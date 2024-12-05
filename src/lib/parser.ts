@@ -7,15 +7,15 @@ enum TokenType {
   PATH = "PATH",
 }
 
+interface Token {
+  tokenType: TokenType;
+  value: string;
+}
+
 enum TezosNetwork {
   MAINNET = "mainnet",
   GHOSTNET = "ghostnet",
   // update this with more networks
-}
-
-interface Token {
-  tokenType: TokenType;
-  value: string;
 }
 
 export function parseTezosUri(

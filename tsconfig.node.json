@@ -6,8 +6,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "strict": true,
-    "noEmit": true,
-    "noUncheckedSideEffectImports": true
+    "noEmit": true
   },
   "include": ["vite.config.ts", "src/**/*.ts"]
 }

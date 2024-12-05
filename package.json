@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@taquito/taquito": "^20.1.1",
-    "@taquito/utils": "^20.1.1"
+    "@taquito/utils": "^20.1.1",
+    "axios": "^1.7.9"
   }
 }

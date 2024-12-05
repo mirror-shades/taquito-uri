@@ -1,17 +1,21 @@
 <script lang="ts">
   import { parseTezosUri } from './lib/parser';
+  import { executeTokens } from './lib/exec';
   
   let inputValue = '';
   let contract = '';
   let network = '';
   let parsedResult: any = null;
+  let execResult: any = null;
 
-  function processInput(defaultContract: string, defaultNetwork: string) {
+  async function processInput(defaultContract: string, defaultNetwork: string) {
     const result = parseTezosUri(inputValue, defaultContract, defaultNetwork);
     if (result.error) {
       console.error('Failed to parse URI:', result.error);
     }
     parsedResult = result;
+    execResult = await executeTokens(result.tokens);
+    console.log('Execution Result:', execResult);
   }
 </script>
 
@@ -22,7 +26,7 @@
   <br/>
   <br/>
   <p>Examples:</p>
-  <code>tezos-storage://KT1GbXzhzCbxiQHTHau8oTVjcGgRK1RJei5u.ghostnet/name</code>
+  <code>tezos-storage://KT1N7ZcRUDd7eEiL4a1bggvsxfxR7Z9h6PUt.ghostnet/name</code>
   <br/>
   <br/>
   <select bind:value={network}>
@@ -45,22 +49,21 @@
     </button>
   </div>
   <br/>
-  <br/>
-  <p>Result:</p>
-  {#if parsedResult}
-    {#if parsedResult.error}
+  {#if execResult}
+    <p>Execution Result:</p>
+    {#if execResult.error}
       <div class="error">
-        <span>{parsedResult.error}</span>
+        <span>{execResult.error}</span>
       </div>
     {:else}
-      {#each parsedResult.tokens as token}
-        <div>
-          <span>{token.tokenType}</span>
-          <br/>
-          <span>{token.value}</span>
-        </div>
-        <br/>
-      {/each}
+      <div>
+        <span>Protocol: {execResult.protocol}</span><br/>
+        <span>Contract: {execResult.contract}</span><br/>
+        <span>Network: {execResult.network}</span><br/>
+        <span>Path: {execResult.path}</span><br/>
+        <span>RPC URL: {execResult.rpcUrl}</span><br/>
+        <span>Result: {execResult.result}</span>
+      </div>
     {/if}
   {/if}
 </main>

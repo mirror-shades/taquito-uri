@@ -1,5 +1,5 @@
 # sample metadata at ipfs://bafkreiaiurcm744gcv4ru65y5h3y7ycspyrquowhl2l34chnhyc2v24v24
-# contract at KT1GbXzhzCbxiQHTHau8oTVjcGgRK1RJei5u
+# contract at KT1N7ZcRUDd7eEiL4a1bggvsxfxR7Z9h6PUt
 # use in smartpy.io for best results
 
 import smartpy as sp
@@ -8,7 +8,7 @@ import smartpy as sp
 def main():
     class MyContract(sp.Contract):
         def __init__(self):
-            metadata = sp.big_map({
+            self.data.metadata = sp.big_map({
                 "": sp.pack("ipfs://bafkreiaiurcm744gcv4ru65y5h3y7ycspyrquowhl2l34chnhyc2v24v24"),
                 "name": sp.pack("Name goes here")
             })
