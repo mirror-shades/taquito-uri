@@ -1,0 +1,37 @@
+{
+  "name": "MyContract",
+  "description": "This is a sample smart contract for demonstration purposes.",
+  "version": "1.0.0",
+  "license": {
+    "name": "MIT"
+  },
+  "authors": ["Jane Doe <jane.doe@example.com>"],
+  "homepage": "https://example.com/mycontract",
+  "source": {
+    "tools": ["SmartPy"],
+    "location": "https://example.com/source"
+  },
+  "interfaces": ["TZIP-016"],
+  "errors": [
+    {
+      "error": { "int": "404" },
+      "expansion": { "string": "Not Found" },
+      "languages": ["en"]
+    }
+  ],
+  "views": [
+    {
+      "name": "get_balance",
+      "description": "Retrieve the balance of an account.",
+      "implementations": [
+        {
+          "michelsonStorageView": {
+            "parameter": { "prim": "address" },
+            "returnType": { "prim": "nat" },
+            "code": [{ "prim": "DUP" }, { "prim": "CAR" }]
+          }
+        }
+      ]
+    }
+  ]
+}
